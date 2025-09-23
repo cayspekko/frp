@@ -301,6 +301,7 @@ type HTTPProxyConfig struct {
 	RequestHeaders    HeaderOperations `json:"requestHeaders,omitempty"`
 	ResponseHeaders   HeaderOperations `json:"responseHeaders,omitempty"`
 	RouteByHTTPUser   string           `json:"routeByHTTPUser,omitempty"`
+	StripPrefix       bool             `json:"stripPrefix,omitempty"`
 }
 
 func (c *HTTPProxyConfig) MarshalToMsg(m *msg.NewProxy) {
@@ -315,6 +316,7 @@ func (c *HTTPProxyConfig) MarshalToMsg(m *msg.NewProxy) {
 	m.Headers = c.RequestHeaders.Set
 	m.ResponseHeaders = c.ResponseHeaders.Set
 	m.RouteByHTTPUser = c.RouteByHTTPUser
+	m.StripPrefix = c.StripPrefix
 }
 
 func (c *HTTPProxyConfig) UnmarshalFromMsg(m *msg.NewProxy) {
@@ -329,6 +331,7 @@ func (c *HTTPProxyConfig) UnmarshalFromMsg(m *msg.NewProxy) {
 	c.RequestHeaders.Set = m.Headers
 	c.ResponseHeaders.Set = m.ResponseHeaders
 	c.RouteByHTTPUser = m.RouteByHTTPUser
+	c.StripPrefix = m.StripPrefix
 }
 
 var _ ProxyConfigurer = &HTTPSProxyConfig{}
