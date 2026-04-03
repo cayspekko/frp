@@ -444,7 +444,7 @@ var _ = ginkgo.Describe("[Feature: HTTP]", func() {
 			stripPrefix = true
 			`, localPort)
 
-		f.RunProcesses([]string{serverConf}, []string{clientConf})
+		f.RunProcesses(serverConf, []string{clientConf})
 
 		// Test that /api/users becomes /users
 		framework.NewRequestExpect(f).Port(vhostHTTPPort).
